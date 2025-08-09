@@ -1,10 +1,13 @@
 {
-  "name": "Stoploss & Target Calculator",
-  "short_name": "SL Target",
-  "start_url": "./index.html",
+  "name": "AVK Stoploss & Target Calculator",
+  "short_name": "AVK Calc",
+  "id": "com.avk.stoplosscalc.v1.1",
+  "start_url": "/?v=1.1",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "description": "Calculate Stoploss & Target price quickly for stock trading.",
   "icons": [
     {
       "src": "avk_logo.png",
