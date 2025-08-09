@@ -15,22 +15,26 @@
 <body>
 
   <div class="container">
-    <h2>Stoploss & Target Calculator</h2>
+    <h2>Target & Stoploss Calculator</h2>
 
     <label for="entryPrice">Entry Price (₹)</label>
-    <input type="text" id="entryPrice" placeholder="e.g. 100000" min="0" step="0.01"
+    <input type="text" inputmode="numeric" id="entryPrice" placeholder="e.g. 101" min="0" step="0.01"
       oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
 
+    <label for="quantity">Quantity</label>
+    <input id="quantity" type="text" inputmode="numeric" step="1" min="0" placeholder="e.g. 100 qty">
+
+
     <label for="lossPercent">Stoploss %</label>
-    <input type="text" id="lossPercent" placeholder="e.g. 1" min="0" step="0.01"
+    <input type="text" inputmode="numeric" id="lossPercent" placeholder="e.g. 1%" min="0" step="0.01"
       oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
 
     <label for="targetPercent">Target %</label>
-    <input type="text" id="targetPercent" placeholder="e.g. 2" min="0" step="0.01"
+    <input type="text" inputmode="numeric" id="targetPercent" placeholder="e.g. 2%" min="0" step="0.01"
       oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
 
     <button onclick="calculate()">Calculate</button>
-    <p><b>Result:</b></p>
+    <p><b>P&L Summary:</b></p>
     <div class="result" id="result"></div>
   </div>
 
