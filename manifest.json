@@ -1,7 +1,8 @@
 {
   "name": "Stoploss & Target Calculator",
   "short_name": "SL Target",
-  "start_url": "./index.html",
+  "id": "com.avk.stoplosscalc.v1.1", 
+  "start_url": "./index.html?v=1.1", 
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
