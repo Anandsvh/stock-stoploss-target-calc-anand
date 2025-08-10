@@ -1,13 +1,14 @@
 function calculate() {
-  // sanitize: trim, remove spaces, convert commas to dot
   const sanitize = s => (s || "").toString().trim().replace(/\s+/g, "").replace(/,/g, ".");
+
+  const isSell = document.getElementById('tradeToggle').checked; // false=buy, true=sell
+  const tradeType = isSell ? "sell" : "buy";
 
   const entryPriceValue = sanitize(document.getElementById('entryPrice').value);
   const lossPercentValue = sanitize(document.getElementById('lossPercent').value);
   const targetPercentValue = sanitize(document.getElementById('targetPercent').value);
   const quantityValue = sanitize(document.getElementById('quantity').value);
 
-  // Accept formats like: 100  |  0.5  |  .75
   const numericRe = /^(\d+(\.\d*)?|\.\d+)$/;
 
   if (!numericRe.test(entryPriceValue) || !numericRe.test(lossPercentValue) ||
@@ -26,28 +27,58 @@ function calculate() {
     return;
   }
 
-  // Compute prices
-  const stoplossPrice = Number((entryPrice * (1 - lossPercent / 100)).toFixed(10));
-  const targetPrice = Number((entryPrice * (1 + targetPercent / 100)).toFixed(10));
+  // ✅ Validation ranges
+  if (lossPercent < 0.05 || lossPercent > 10) {
+    alert("Stoploss % must be between 0.05 and 10.");
+    return;
+  }
 
-  const stoplossDiff = entryPrice - stoplossPrice;
-  const targetDiff = targetPrice - entryPrice;
+  if (targetPercent < 0.05 || targetPercent > 50) {
+    alert("Target % must be between 0.05 and 50.");
+    return;
+  }
 
-  // Profit & Loss calculation based on quantity
+  let stoplossPrice, targetPrice, stoplossDiff, targetDiff;
+
+  if (tradeType === "buy") {
+    stoplossPrice = entryPrice * (1 - lossPercent / 100);
+    targetPrice = entryPrice * (1 + targetPercent / 100);
+    stoplossDiff = entryPrice - stoplossPrice;
+    targetDiff = targetPrice - entryPrice;
+  } else {
+    stoplossPrice = entryPrice * (1 + lossPercent / 100);
+    targetPrice = entryPrice * (1 - targetPercent / 100);
+    stoplossDiff = stoplossPrice - entryPrice;
+    targetDiff = entryPrice - targetPrice;
+  }
+
   const totalProfit = quantity * targetDiff;
   const totalLoss = quantity * stoplossDiff;
 
   document.getElementById('result').innerHTML = `
+    <p><b>Mode:</b><span class=${tradeType === "buy" ? 'color-buy' : 'color-sell'}> ${tradeType.toUpperCase()}</span></p>
+    <p>Capital Req: ₹${(entryPrice * quantity).toFixed(2)}</p>
     <p>Stoploss Price<span class="colone">:</span> ₹${stoplossPrice.toFixed(2)} <span class="stop-loss">(-₹${stoplossDiff.toFixed(2)})</span></p>
     <p>Target Price<span class="colone">:</span> ₹${targetPrice.toFixed(2)} <span class="target-price">(+₹${targetDiff.toFixed(2)})</span></p>
     <hr>
     <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toFixed(2)}</span></p>
     <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toFixed(2)}</span></p>
   `;
+
 }
 
-// Register Service Worker (keep as-is)
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-    .then(() => console.log("Service Worker Registered"));
+function updateButtonColor() {
+  const btn = document.getElementById('btnCalc');
+  const title = document.getElementById('appTitle');
+  const isSell = document.getElementById('tradeToggle').checked;
+
+  if (isSell) {
+    btn.classList.add('sell-mode');
+    title.classList.add('sell-mode');
+  } else {
+    btn.classList.remove('sell-mode');
+    title.classList.remove('sell-mode');
+  }
+
+  document.getElementById('result').innerHTML = '';
 }

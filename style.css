@@ -37,17 +37,12 @@
       width: 100%;
       margin-top: 15px;
       padding: 10px;
-      background: #007bff;
       color: white;
       font-size: 18px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       letter-spacing: 0.8px;
-  }
-
-  button:hover {
-      background: #0056b3;
   }
 
   .result {
@@ -68,9 +63,102 @@
   }
 
   .target-price {
-      color: green;
+      color: #28a745;
   }
-  
+
   .colone {
-    color: brown;
+      color: brown;
+  }
+
+  .toggle-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+  }
+
+  .toggle-input {
+      display: none;
+  }
+
+  .toggle-label {
+      background-color: #28a745;
+      /* green for buy */
+      border-radius: 25px;
+      padding: 5px 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      position: relative;
+      width: 100px;
+      justify-content: space-between;
+      box-shadow: 0px 0px 3px 2px;
+  }
+
+  .toggle-label .toggle-switch {
+      position: absolute;
+      background: white;
+      width: 60px;
+      height: 26px;
+      border-radius: 20px;
+      left: 0px;
+      transition: left 0.3s ease;
+  }
+
+  .toggle-input:checked+.toggle-label {
+      background-color: #dc3545;
+      /* red for sell */
+  }
+
+  .toggle-input:checked+.toggle-label .toggle-switch {
+      left: 60px;
+  }
+
+  .toggle-text {
+      font-weight: bold;
+      font-size: 14px;
+      color: white;
+      z-index: 2;
+  }
+
+  .buy-text {
+      margin-left: 8px;
+  }
+
+  .sell-text {
+      margin-right: 8px;
+  }
+
+  .color-buy {
+      color: #28a745;
+  }
+
+  .color-sell {
+      color: #dc3545;
+  }
+
+  @media screen and (max-width: 580px) {
+      label {
+          font-size: 14px;
+      }
+
+      h2 {
+          font-size: 20px;
+      }
+  }
+
+  .mode-color {
+      background-color: #28a745;
+  }
+
+  .mode-color.sell-mode {
+      background-color: #dc3545;
+  }
+
+  .mode-title {
+      color: #28a745;
+  }
+
+  .mode-title.sell-mode {
+      color: #dc3545;
   }

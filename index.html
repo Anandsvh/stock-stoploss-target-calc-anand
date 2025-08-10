@@ -15,7 +15,16 @@
 <body>
 
   <div class="container">
-    <h2>Target & Stoploss Calculator</h2>
+    <h2 id="appTitle" class="mode-title">Target & Stoploss Calculator</h2>
+
+    <div class="toggle-container">
+      <input type="checkbox" id="tradeToggle" class="toggle-input" onchange="updateButtonColor()">
+      <label for="tradeToggle" class="toggle-label">
+        <span class="toggle-text buy-text">BUY</span>
+        <span class="toggle-switch"></span>
+        <span class="toggle-text sell-text">SELL</span>
+      </label>
+    </div>
 
     <label for="entryPrice">Entry Price (₹)</label>
     <input type="text" inputmode="numeric" id="entryPrice" placeholder="e.g. 101" min="0" step="0.01"
@@ -33,7 +42,7 @@
     <input type="text" inputmode="numeric" id="targetPercent" placeholder="e.g. 2%" min="0" step="0.01"
       oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
 
-    <button onclick="calculate()">Calculate</button>
+    <button onclick="calculate()" id="btnCalc" class="mode-color">Calculate</button>
     <p><b>P&L Summary:</b></p>
     <div class="result" id="result"></div>
   </div>

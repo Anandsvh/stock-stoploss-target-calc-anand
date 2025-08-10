@@ -4,7 +4,6 @@ self.addEventListener("install", event => {
       return cache.addAll([
         "./index.html",
         "./manifest.json",
-        "./avk_logo.png",
         "./avk_logo.png"
       ]);
     })
