@@ -57,12 +57,12 @@ function calculate() {
 
   document.getElementById('result').innerHTML = `
     <p><b>Mode:</b><span class=${tradeType === "buy" ? 'color-buy' : 'color-sell'}> ${tradeType.toUpperCase()}</span></p>
-    <p>Capital Req: ₹${(entryPrice * quantity).toFixed(2)}</p>
-    <p>Stoploss Price<span class="colone">:</span> ₹${stoplossPrice.toFixed(2)} <span class="stop-loss">(-₹${stoplossDiff.toFixed(2)})</span></p>
-    <p>Target Price<span class="colone">:</span> ₹${targetPrice.toFixed(2)} <span class="target-price">(+₹${targetDiff.toFixed(2)})</span></p>
+    <p>Capital Req: <span class='capital'>₹${(entryPrice * quantity).toLocaleString('en-IN')}</span></p>
+    <p>Stoploss Price<span class="colone">:</span> ₹${stoplossPrice.toLocaleString('en-IN')} <span class="stop-loss">(-₹${stoplossDiff.toLocaleString('en-IN')})</span></p>
+    <p>Target Price<span class="colone">:</span> ₹${targetPrice.toLocaleString('en-IN')} <span class="target-price">(+₹${targetDiff.toLocaleString('en-IN')})</span></p>
     <hr>
-    <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toFixed(2)}</span></p>
-    <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toFixed(2)}</span></p>
+    <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toLocaleString('en-IN')}</span></p>
+    <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toLocaleString('en-IN')}</span></p>
   `;
 
 }
