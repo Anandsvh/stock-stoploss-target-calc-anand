@@ -34,8 +34,13 @@ function calculate() {
     return;
   }
 
-   if (quantityValue < 1 || quantityValue > 25000) {
-    allError.innerHTML = "Quantity must be between 1 to 25,000";
+  if (
+    isNaN(quantityValue) ||        // not a number
+    quantityValue % 1 !== 0 ||    // has decimal part
+    quantityValue < 1 ||          // less than 1
+    quantityValue > 25000         // greater than 25000
+  ) {
+    allError.innerHTML = "Quantity must be an integer between 1 to 25,000";
     return;
   }
 
@@ -70,7 +75,7 @@ function calculate() {
     <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
     <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
   `;
-  
+
   allError.innerHTML = "";
 }
 
