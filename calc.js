@@ -8,12 +8,13 @@ function calculate() {
   const lossPercentValue = sanitize(document.getElementById('lossPercent').value);
   const targetPercentValue = sanitize(document.getElementById('targetPercent').value);
   const quantityValue = sanitize(document.getElementById('quantity').value);
+  const allError = document.getElementById('allError');
 
   const numericRe = /^(\d+(\.\d*)?|\.\d+)$/;
 
   if (!numericRe.test(entryPriceValue) || !numericRe.test(lossPercentValue) ||
     !numericRe.test(targetPercentValue) || !numericRe.test(quantityValue)) {
-    alert("Please enter valid positive numbers (examples: 100, 0.5, .75).");
+    allError.innerHTML = "Please enter valid positive numbers (examples: 100, 0.5, .75).";
     return;
   }
 
@@ -23,18 +24,18 @@ function calculate() {
   const quantity = parseFloat(quantityValue);
 
   if ([entryPrice, lossPercent, targetPercent, quantity].some(isNaN)) {
-    alert("Please fill in all fields with valid numbers.");
+    allError.innerHTML = "Please fill in all fields with valid numbers.";
     return;
   }
 
   // ✅ Validation ranges
   if (lossPercent < 0.05 || lossPercent > 10) {
-    alert("Stoploss % must be between 0.05 and 10.");
+    allError.innerHTML = "Stoploss % must be between 0.05 and 10.";
     return;
   }
 
   if (targetPercent < 0.05 || targetPercent > 50) {
-    alert("Target % must be between 0.05 and 50.");
+    allError.innerHTML = "Target % must be between 0.05 and 50.";
     return;
   }
 
@@ -64,7 +65,8 @@ function calculate() {
     <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toLocaleString('en-IN')}</span></p>
     <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toLocaleString('en-IN')}</span></p>
   `;
-
+  
+  allError.innerHTML = "";
 }
 
 function updateButtonColor() {
@@ -81,4 +83,5 @@ function updateButtonColor() {
   }
 
   document.getElementById('result').innerHTML = '';
+  document.getElementById('allError').innerHTML = '';
 }

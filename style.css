@@ -167,3 +167,8 @@
   .capital {
     color: #0093ff;
   }
+
+  .allError {
+    color: #dc3545;
+    font-size: 14px;
+  }
