@@ -34,6 +34,11 @@ function calculate() {
     return;
   }
 
+   if (quantityValue < 1 || quantityValue > 25000) {
+    allError.innerHTML = "Quantity must be between 1 to 25,000";
+    return;
+  }
+
   if (targetPercent < 0.05 || targetPercent > 50) {
     allError.innerHTML = "Target % must be between 0.05 and 50.";
     return;
@@ -59,11 +64,11 @@ function calculate() {
   document.getElementById('result').innerHTML = `
     <p><b>Mode:</b><span class=${tradeType === "buy" ? 'color-buy' : 'color-sell'}> ${tradeType.toUpperCase()}</span></p>
     <p>Capital Req: <span class='capital'>₹${(entryPrice * quantity).toLocaleString('en-IN')}</span></p>
-    <p>Stoploss Price<span class="colone">:</span> ₹${stoplossPrice.toLocaleString('en-IN')} <span class="stop-loss">(-₹${stoplossDiff.toLocaleString('en-IN')})</span></p>
-    <p>Target Price<span class="colone">:</span> ₹${targetPrice.toLocaleString('en-IN')} <span class="target-price">(+₹${targetDiff.toLocaleString('en-IN')})</span></p>
+    <p>Stoploss Price<span class="colone">:</span> ₹${stoplossPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <span class="stop-loss">(-₹${stoplossDiff.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })})</span></p>
+    <p>Target Price<span class="colone">:</span> ₹${targetPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <span class="target-price">(+₹${targetDiff.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })})</span></p>
     <hr>
-    <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toLocaleString('en-IN')}</span></p>
-    <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toLocaleString('en-IN')}</span></p>
+    <p>Profit<span class="colone">:</span> <span class="target-price">+₹${totalProfit.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
+    <p>Loss<span class="colone">:</span> <span class="stop-loss">-₹${totalLoss.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span></p>
   `;
   
   allError.innerHTML = "";
