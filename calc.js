@@ -34,12 +34,7 @@ function calculate() {
     return;
   }
 
-  if (
-    isNaN(quantityValue) ||        // not a number
-    quantityValue % 1 !== 0 ||    // has decimal part
-    quantityValue < 1 ||          // less than 1
-    quantityValue > 25000         // greater than 25000
-  ) {
+  if (quantity < 1 || quantity > 25000) {
     allError.innerHTML = "Quantity must be an integer between 1 to 25,000";
     return;
   }
