@@ -92,7 +92,8 @@ function updateButtonColor() {
 }
 
 function calculatePercentage() {
-  const part = parseFloat(document.getElementById("part").value);
+  const partValue = document.getElementById("part").value;
+  const part =  parseFloat(partValue.replace(/,/g, ''));
   const TotalValue = document.getElementById("total").value;
   const total = parseFloat(TotalValue.replace(/,/g, ''));
   const resultDiv = document.getElementById("totalResult");
@@ -105,7 +106,7 @@ function calculatePercentage() {
   resultDiv.classList.remove('total-err');
 
   const percentage = (part / total) * 100;
-  resultDiv.innerHTML = `${part} is <b>${percentage.toFixed(2)}%</b> of ${TotalValue}`;
+  resultDiv.innerHTML = `${partValue}₹ is <b>${percentage.toFixed(2)}%</b> of ${TotalValue}`;
 }
 
 function calculateValue() {
@@ -114,6 +115,12 @@ function calculateValue() {
   const total = parseFloat(TotalValue.replace(/,/g, ''));
   const resultDiv = document.getElementById("valueResult");
 
+  if (percent < 0 || percent > 100) {
+    resultDiv.innerText = "⚠️ The value should be below 100%";
+    resultDiv.classList.add('total-err');
+    return;
+  }
+
   if (isNaN(percent) || isNaN(total)) {
     resultDiv.innerText = "⚠️ Please enter valid numbers.";
     resultDiv.classList.add('total-err');
@@ -121,7 +128,7 @@ function calculateValue() {
   }
   resultDiv.classList.remove('total-err');
   const value = (percent / 100) * total;
-  resultDiv.innerHTML = `${percent}% of ${TotalValue} is <b>${value.toFixed(2)}₹</b>`;
+  resultDiv.innerHTML = `${percent}% of ${TotalValue.toLocaleString('en-IN')} is <b>${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}₹</b>`;
 }
 
 // Function to format numbers with commas

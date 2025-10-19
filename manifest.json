@@ -1,8 +1,8 @@
 {
   "name": "Stoploss & Target Calculator",
   "short_name": "AVK Calc",
-  "id": "com.avk.stoplosscalc.v2.5", 
-  "start_url": "./index.html?v=2.5", 
+  "id": "com.avk.stoplosscalc.v2.6", 
+  "start_url": "./index.html?v=2.6", 
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",

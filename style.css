@@ -97,7 +97,6 @@
 
   .toggle-label {
       background-color: #28a745;
-      /* green for buy */
       border-radius: 25px;
       padding: 5px 10px;
       cursor: pointer;
@@ -108,6 +107,7 @@
       width: 100px;
       justify-content: space-between;
       box-shadow: 0px 0px 3px 2px;
+      margin-top: 0;
   }
 
   .toggle-label .toggle-switch {

@@ -57,8 +57,9 @@
         <span style="color:#0078ff; font-weight:bold;">₹1,000</span> — Ans:
         <span style="color:green; font-weight:bold;">1.5%</span>
       </p>
-
-      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (Ex: 15)"/>
+      <label for="entryPrice">Enter ₹</label>
+      <input type="text" class="format-number" inputmode="numeric" id="part" placeholder="Enter part value (Ex: 15)"/>
+      <label for="entryPrice">Enter Value</label>
       <input type="text" class="format-number" inputmode="numeric" id="total" placeholder="Enter total value (Ex: 1,000)" />
       <button class="mode-color" onclick="calculatePercentage()">Calculate</button>
       <p><b>Result:</b></p>
@@ -74,7 +75,9 @@
         <span style="color:green; font-weight:bold;">₹150</span>
       </p>
 
-      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (Ex: 15)"/>
+      <label for="entryPrice">Enter %</label>
+      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter % value (Ex: 15)"/>
+      <label for="entryPrice">Enter Value</label>
       <input type="text" class="format-number" inputmode="numeric" id="baseValue" placeholder="Enter total value (Ex: 1,000)"/>
       <button class="mode-color" onclick="calculateValue()">Calculate</button>
       <p><b>Result:</b></p>
