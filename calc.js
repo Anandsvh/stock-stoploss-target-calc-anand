@@ -121,7 +121,7 @@ function calculateValue() {
   }
   resultDiv.classList.remove('total-err');
   const value = (percent / 100) * total;
-  resultDiv.innerHTML = `${percent}% of ${TotalValue} is <b>${value.toFixed(2)}</b>`;
+  resultDiv.innerHTML = `${percent}% of ${TotalValue} is <b>${value.toFixed(2)}₹</b>`;
 }
 
 // Function to format numbers with commas
