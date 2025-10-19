@@ -58,10 +58,8 @@
         <span style="color:green; font-weight:bold;">1.5%</span>
       </p>
 
-      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (Ex: 15)"
-        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
-      <input type="text" inputmode="numeric" id="total" placeholder="Enter total value (Ex: 1,000)"
-        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (Ex: 15)"/>
+      <input type="text" class="format-number" inputmode="numeric" id="total" placeholder="Enter total value (Ex: 1,000)" />
       <button class="mode-color" onclick="calculatePercentage()">Calculate</button>
       <p><b>Result:</b></p>
       <div class="result clr" id="totalResult"></div>
@@ -76,10 +74,8 @@
         <span style="color:green; font-weight:bold;">₹150</span>
       </p>
 
-      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (Ex: 15)"
-        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
-      <input type="text" inputmode="numeric" id="baseValue" placeholder="Enter total value (Ex: 1,000)"
-        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (Ex: 15)"/>
+      <input type="text" class="format-number" inputmode="numeric" id="baseValue" placeholder="Enter total value (Ex: 1,000)"/>
       <button class="mode-color" onclick="calculateValue()">Calculate</button>
       <p><b>Result:</b></p>
       <div class="result clr" id="valueResult"></div>

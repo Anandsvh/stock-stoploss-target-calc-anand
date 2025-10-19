@@ -25,7 +25,7 @@ function calculate() {
 
   if ([entryPrice, lossPercent, targetPercent, quantity].some(isNaN)) {
     allError.innerHTML = "⚠️ Please fill in all fields with valid numbers.";
-    return; 
+    return;
   }
 
   // ✅ Validation ranges
@@ -93,7 +93,8 @@ function updateButtonColor() {
 
 function calculatePercentage() {
   const part = parseFloat(document.getElementById("part").value);
-  const total = parseFloat(document.getElementById("total").value);
+  const TotalValue = document.getElementById("total").value;
+  const total = parseFloat(TotalValue.replace(/,/g, ''));
   const resultDiv = document.getElementById("totalResult");
 
   if (isNaN(part) || isNaN(total) || total === 0) {
@@ -104,12 +105,13 @@ function calculatePercentage() {
   resultDiv.classList.remove('total-err');
 
   const percentage = (part / total) * 100;
-  resultDiv.innerHTML = `${part} is <b>${percentage.toFixed(2)}%</b> of ${total}`;
+  resultDiv.innerHTML = `${part} is <b>${percentage.toFixed(2)}%</b> of ${TotalValue}`;
 }
 
 function calculateValue() {
   const percent = parseFloat(document.getElementById("percentValue").value);
-  const total = parseFloat(document.getElementById("baseValue").value);
+  const TotalValue = document.getElementById("baseValue").value;
+  const total = parseFloat(TotalValue.replace(/,/g, ''));
   const resultDiv = document.getElementById("valueResult");
 
   if (isNaN(percent) || isNaN(total)) {
@@ -119,5 +121,34 @@ function calculateValue() {
   }
   resultDiv.classList.remove('total-err');
   const value = (percent / 100) * total;
-  resultDiv.innerHTML = `${percent}% of ${total} is <b>${value.toFixed(2)}</b>`;
+  resultDiv.innerHTML = `${percent}% of ${TotalValue} is <b>${value.toFixed(2)}</b>`;
 }
+
+// Function to format numbers with commas
+function formatNumberInput(el) {
+  let value = el.value;
+
+  // Remove all commas
+  value = value.replace(/,/g, '');
+
+  // Split integer and decimal part
+  let [integerPart, decimalPart] = value.split('.');
+
+  // Remove any non-digit characters from integer part
+  integerPart = integerPart.replace(/[^\d]/g, '');
+
+  // Add commas to integer part
+  if (integerPart) {
+    integerPart = Number(integerPart).toLocaleString('en-IN');
+  }
+
+  // Combine integer and decimal part
+  el.value = decimalPart !== undefined ? `${integerPart}.${decimalPart}` : integerPart;
+}
+
+// Attach the function to all inputs with class "format-number"
+document.addEventListener('input', function (e) {
+  if (e.target.classList.contains('format-number')) {
+    formatNumberInput(e.target);
+  }
+});
