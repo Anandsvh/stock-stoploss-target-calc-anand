@@ -1,55 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stock Market Calculator's</title>
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#007bff">
-    <link rel="stylesheet" href="style.css">
-    <script src="calc.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Market Calculator's</title>
 
-  <body>
-    <div class="container">
-      <div class="stoplossTarget">
-        <h2 id="appTitle" class="mode-title">Target & Stoploss</h2>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff">
+  <link rel="stylesheet" href="style.css">
+  <script src="calc.js"></script>
+</head>
 
-        <div class="toggle-container">
-          <input type="checkbox" id="tradeToggle" class="toggle-input" onchange="updateButtonColor()">
-          <label for="tradeToggle" class="toggle-label">
-            <span class="toggle-text buy-text">BUY</span>
-            <span class="toggle-switch"></span>
-            <span class="toggle-text sell-text">SELL</span>
-          </label>
-        </div>
+<body>
+  <div class="container">
+    <div class="stoplossTarget">
+      <h2 id="appTitle" class="mode-title">Target & Stoploss</h2>
 
-        <p class="allError" id="allError"></p>
-
-        <label for="entryPrice">Entry Price (₹)</label>
-        <input type="text" inputmode="numeric" id="entryPrice" placeholder="E.g 101" min="0" step="0.01"
-          oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
-
-        <label for="quantity">Quantity</label>
-        <input id="quantity" type="text" inputmode="numeric" step="1" min="0" placeholder="E.g. 100 qty"
-          oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '');">
-
-        <label for="lossPercent">Stoploss %</label>
-        <input type="text" inputmode="numeric" id="lossPercent" placeholder="E.g. 1%" min="0" step="0.01"
-          oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
-
-        <label for="targetPercent">Target %</label>
-        <input type="text" inputmode="numeric" id="targetPercent" placeholder="E.g. 2%" min="0" step="0.01"
-          oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
-
-        <button onclick="calculate()" id="btnCalc" class="mode-color">Calculate</button>
-        <p><b>P&L Summary:</b></p>
-        <div class="result" id="result"></div>
+      <div class="toggle-container">
+        <input type="checkbox" id="tradeToggle" class="toggle-input" onchange="updateButtonColor()">
+        <label for="tradeToggle" class="toggle-label">
+          <span class="toggle-text buy-text">BUY</span>
+          <span class="toggle-switch"></span>
+          <span class="toggle-text sell-text">SELL</span>
+        </label>
       </div>
-      <div class="percentageCalculator">
-        Percentage Calculator coming soon...
-      </div>
+
+      <p class="allError" id="allError"></p>
+
+      <label for="entryPrice">Entry Price (₹)</label>
+      <input type="text" inputmode="numeric" id="entryPrice" placeholder="E.g 101" min="0" step="0.01"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="text" inputmode="numeric" step="1" min="0" placeholder="E.g. 100 qty"
+        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+(?=\d)/, '');">
+
+      <label for="lossPercent">Stoploss %</label>
+      <input type="text" inputmode="numeric" id="lossPercent" placeholder="E.g. 1%" min="0" step="0.01"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+
+      <label for="targetPercent">Target %</label>
+      <input type="text" inputmode="numeric" id="targetPercent" placeholder="E.g. 2%" min="0" step="0.01"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+
+      <button onclick="calculate()" id="btnCalc" class="mode-color">Calculate</button>
+      <p><b>P&L Summary:</b></p>
+      <div class="result" id="result"></div>
     </div>
-  </body>
+
+    <div class="percentageCalculator">
+      <h2 id="appTitle" class="mode-title">Percentage of Total</h2>
+      <div class="total-title">
+        <b>Ex:</b>15₹ is what % of 385₹
+      </div>
+
+      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (e.g., 15)"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <input type="text" inputmode="numeric" id="total" placeholder="Enter total value (e.g., 385)"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <button class="mode-color" onclick="calculatePercentage()">Calculate</button>
+      <p><b>Result:</b></p>
+      <div class="result clr" id="totalResult"></div>
+    </div>
+
+    <div class="valueCalculator">
+      <h2 id="appTitle" class="mode-title">Value from Percentage</h2>
+      <div class="total-title">
+        <b>Ex:</b>15% of 385 is what value
+      </div>
+
+      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (e.g., 15)"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <input type="text" inputmode="numeric" id="baseValue" placeholder="Enter total value (e.g., 385)"
+        oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
+      <button class="mode-color" onclick="calculateValue()">Calculate</button>
+      <p><b>Result:</b></p>
+      <div class="result clr" id="valueResult"></div>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -14,7 +14,7 @@ function calculate() {
 
   if (!numericRe.test(entryPriceValue) || !numericRe.test(lossPercentValue) ||
     !numericRe.test(targetPercentValue) || !numericRe.test(quantityValue)) {
-    allError.innerHTML = "Please enter valid positive numbers (examples: 100, 0.5, .75).";
+    allError.innerHTML = "⚠️ Please enter valid positive numbers (Ex: 100, 0.5, .75).";
     return;
   }
 
@@ -24,23 +24,23 @@ function calculate() {
   const quantity = parseFloat(quantityValue);
 
   if ([entryPrice, lossPercent, targetPercent, quantity].some(isNaN)) {
-    allError.innerHTML = "Please fill in all fields with valid numbers.";
-    return;
+    allError.innerHTML = "⚠️ Please fill in all fields with valid numbers.";
+    return; 
   }
 
   // ✅ Validation ranges
   if (lossPercent < 0.05 || lossPercent > 10) {
-    allError.innerHTML = "Stoploss % must be between 0.05 and 10.";
+    allError.innerHTML = "⚠️ Stoploss % must be between 0.05 and 10.";
     return;
   }
 
   if (quantity < 1 || quantity > 25000) {
-    allError.innerHTML = "Quantity must be an integer between 1 to 25,000";
+    allError.innerHTML = "⚠️ Quantity must be an integer between 1 to 25,000";
     return;
   }
 
   if (targetPercent < 0.05 || targetPercent > 50) {
-    allError.innerHTML = "Target % must be between 0.05 and 50.";
+    allError.innerHTML = "⚠️ Target % must be between 0.05 and 50.";
     return;
   }
 
@@ -89,4 +89,35 @@ function updateButtonColor() {
 
   document.getElementById('result').innerHTML = '';
   document.getElementById('allError').innerHTML = '';
+}
+
+function calculatePercentage() {
+  const part = parseFloat(document.getElementById("part").value);
+  const total = parseFloat(document.getElementById("total").value);
+  const resultDiv = document.getElementById("totalResult");
+
+  if (isNaN(part) || isNaN(total) || total === 0) {
+    resultDiv.innerText = "⚠️ Please enter valid numbers.";
+    resultDiv.classList.add('total-err');
+    return;
+  }
+  resultDiv.classList.remove('total-err');
+
+  const percentage = (part / total) * 100;
+  resultDiv.innerHTML = `${part} is <b>${percentage.toFixed(2)}%</b> of ${total}`;
+}
+
+function calculateValue() {
+  const percent = parseFloat(document.getElementById("percentValue").value);
+  const total = parseFloat(document.getElementById("baseValue").value);
+  const resultDiv = document.getElementById("valueResult");
+
+  if (isNaN(percent) || isNaN(total)) {
+    resultDiv.innerText = "⚠️ Please enter valid numbers.";
+    resultDiv.classList.add('total-err');
+    return;
+  }
+  resultDiv.classList.remove('total-err');
+  const value = (percent / 100) * total;
+  resultDiv.innerHTML = `${percent}% of ${total} is <b>${value.toFixed(2)}</b>`;
 }
