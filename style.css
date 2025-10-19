@@ -13,6 +13,7 @@
       .container {
           flex-wrap: wrap;
           justify-content: center;
+          gap: 30px;
       }
   }
 
@@ -197,11 +198,17 @@
       color: green;
   }
 
-  .result.clr b {
+  .result.clr b,
+  .total-title b {
       color: #dc3545;
   }
 
   .total-err {
       color: #dc3545 !important;
       font-size: 14px;
+  }
+
+  .percentageCalculator input,
+  .valueCalculator input {
+      margin-bottom: 10px;
   }

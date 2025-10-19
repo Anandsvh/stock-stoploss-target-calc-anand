@@ -51,13 +51,16 @@
 
     <div class="percentageCalculator">
       <h2 id="appTitle" class="mode-title">Percentage of Total</h2>
-      <div class="total-title">
-        <b>Ex:</b>15₹ is what % of 385₹
-      </div>
+      <p style="font-size: 14px;text-align: center; color: #222;">
+        💰 <span style="color:#0078ff; font-weight:bold;">₹15</span>
+        is what % of
+        <span style="color:#0078ff; font-weight:bold;">₹1,000</span> — Ans:
+        <span style="color:green; font-weight:bold;">1.5%</span>
+      </p>
 
-      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (e.g., 15)"
+      <input type="text" inputmode="numeric" id="part" placeholder="Enter part value (Ex: 15)"
         oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
-      <input type="text" inputmode="numeric" id="total" placeholder="Enter total value (e.g., 385)"
+      <input type="text" inputmode="numeric" id="total" placeholder="Enter total value (Ex: 1,000)"
         oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
       <button class="mode-color" onclick="calculatePercentage()">Calculate</button>
       <p><b>Result:</b></p>
@@ -66,13 +69,16 @@
 
     <div class="valueCalculator">
       <h2 id="appTitle" class="mode-title">Value from Percentage</h2>
-      <div class="total-title">
-        <b>Ex:</b>15% of 385 is what value
-      </div>
+      <p style="font-size: 14px; color: #222; text-align: center;">
+        📊 <span style="color:#0078ff; font-weight:bold;">15%</span>
+        of
+        <span style="color:#0078ff; font-weight:bold;">₹1,000</span> —  Ans:
+        <span style="color:green; font-weight:bold;">₹150</span>
+      </p>
 
-      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (e.g., 15)"
+      <input type="text" inputmode="numeric" id="percentValue" placeholder="Enter part value (Ex: 15)"
         oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
-      <input type="text" inputmode="numeric" id="baseValue" placeholder="Enter total value (e.g., 385)"
+      <input type="text" inputmode="numeric" id="baseValue" placeholder="Enter total value (Ex: 1,000)"
         oninput="this.value=this.value.replace(/[^0-9.]/g,'')" />
       <button class="mode-color" onclick="calculateValue()">Calculate</button>
       <p><b>Result:</b></p>
